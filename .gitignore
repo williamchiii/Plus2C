@@ -10,5 +10,8 @@ xcuserdata/
 *.xcuserstate
 UserInterfaceState.xcuserstate
 
-# Swift Package Manager
+# SwiftPM build artifacts
 .build/
+
+# SwiftPM/Xcode generated workspace + user data
+Plus2C.swiftpm/.swiftpm/
