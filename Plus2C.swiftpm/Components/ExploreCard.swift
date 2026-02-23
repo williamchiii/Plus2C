@@ -49,7 +49,7 @@ struct ExploreCard<Destination: View>: View {
             .padding(.vertical, 10)
             .background(.white.opacity(0.9), in:
                             RoundedRectangle(cornerRadius: 20))
-            .frame(width: 600, height: 60)
+            .frame(width: 700, height: 60)
 
         }
         .buttonStyle(.plain)

@@ -34,7 +34,6 @@ struct SeaLevelPage: View {
             }
             
         }
-        
         .background(Color.black)
     }
         

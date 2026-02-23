@@ -6,13 +6,20 @@ import SceneKit
 struct GlobeView: UIViewRepresentable {
     var isTopographic: Bool = false
     var showStars: Bool = true
+    var transparentBg: Bool = false
+    var movable: Bool = true
     //Functions
     
     //called once when view is created
     func makeUIView(context: Context) -> SCNView {
         //create SceneView Kit
         let view = SCNView()
-        view.backgroundColor = .black
+        if !transparentBg{
+            view.backgroundColor = .black
+        }
+        else {
+            view.backgroundColor = .clear
+        }
         
         //create a new empty scene
         let scene = SCNScene()
@@ -30,7 +37,10 @@ struct GlobeView: UIViewRepresentable {
         
         
         //Allow user interaction
-        view.allowsCameraControl = true
+        if movable{
+            view.allowsCameraControl = true
+        }
+       
         view.defaultCameraController.interactionMode = .orbitTurntable
         view.defaultCameraController.inertiaEnabled = true
         
