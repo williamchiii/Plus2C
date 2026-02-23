@@ -5,7 +5,7 @@ import SceneKit
 //UIViewRepresentable allows us to embed an SCNView inside SwiftUI
 struct GlobeView: UIViewRepresentable {
     var isTopographic: Bool = false
-    
+    var showStars: Bool = true
     //Functions
     
     //called once when view is created
@@ -22,7 +22,10 @@ struct GlobeView: UIViewRepresentable {
         if isTopographic{
             scene.background.contents = UIColor(Color(red: 114/255, green: 157/255, blue: 219/255))
         } else{
-            scene.background.contents = UIImage(named: "stars")
+            if showStars{
+                scene.background.contents = UIImage(named: "stars")
+            }
+            
         }
         
         

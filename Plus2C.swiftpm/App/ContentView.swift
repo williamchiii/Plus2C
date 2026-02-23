@@ -16,33 +16,22 @@ struct ContentView: View {
                         .foregroundStyle(.white)
                     Spacer()
                     HStack{
-                        NavigationLink(destination: SeaLevelPage()){
+                        NavigationLink(destination: MenuPage()){
                             Text("Begin Exploring")
                         }
-                            .font(.headline)
-                            .padding(.horizontal, 40)
-                            .padding(.vertical, 14)
-                            .background(.white)
-                            .foregroundColor(.black)
-                            .clipShape(Capsule())
-                            .padding(.bottom, 60)
+                        .font(.headline)
+                        .padding(.horizontal, 40)
+                        .padding(.vertical, 14)
+                        .background(.white)
+                        .foregroundColor(.black)
+                        .clipShape(Capsule())
+                        .padding(.bottom, 100)
                         
-                        NavigationLink(destination: TopographicEarthPage()){
-                            Text("Topography Map")
-                        }
-                            .font(.headline)
-                            .padding(.horizontal, 40)
-                            .padding(.vertical, 14)
-                            .background(.white)
-                            .foregroundColor(.black)
-                            .clipShape(Capsule())
-                            .padding(.bottom, 60)
                     }
- 
                 }
             }
+            
+            .background(Color.black)
         }
-        
-        .background(Color.black)
     }
 }
