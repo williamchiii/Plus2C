@@ -1,11 +1,15 @@
 import SwiftUI
 
-struct MenuPage: View {
+struct MainMenuPage: View {
     @State private var tempIncrease = 0.0
     
     var body: some View {
         NavigationStack{
             GeometryReader(){geometry in
+                //if landscape
+                let isLandscape = geometry.size.width > geometry.size.height
+                let cardBottomPaddingRatio = isLandscape ? 18 : 7
+                
                 ZStack{
                     
                     GlobeView(showStars: false, transparentBg: true, movable: false)
@@ -14,13 +18,15 @@ struct MenuPage: View {
                                 WarmingCircle(tempIncrease: $tempIncrease)
                             )
                         .padding(.top, 5)
-                        .padding(.bottom, geometry.size.height/1.7)
+                        .padding(.bottom, geometry.size.height/1.8)
                         
+
                     VStack{
                         Text("Explore Changes")
                             .font(Font.largeTitle.bold())
                             .foregroundStyle(.white)
                         Spacer()
+                        
                         TempControlCard(tempIncrease: $tempIncrease)
                             
                             
@@ -50,17 +56,17 @@ struct MenuPage: View {
                             title: "Time Machine",
                             subtitle: "See the Earth in the past and future"
                         ){
-                            Plus2cInfoPage()
+                            TimeMachineCard()
                         }
                         ExploreCard(
                             systemImage: "info.circle",
                             title: "+2°C",
                             subtitle: "Learn more about the critical +2°C threshold"
                         ){
-                            TimeMachinePage()
+                            Plus2cInfoPage()
                         }
-
-                        .padding(.bottom, geometry.size.height/5)
+                        
+                        .padding(.bottom, geometry.size.height/CGFloat(cardBottomPaddingRatio))
                     }
                 }
 

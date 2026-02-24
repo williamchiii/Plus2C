@@ -16,7 +16,7 @@ struct ContentView: View {
                         .foregroundStyle(.white)
                     Spacer()
                     HStack{
-                        NavigationLink(destination: MenuPage()){
+                        NavigationLink(destination: MainMenuPage()){
                             Text("Begin Exploring")
                         }
                         .font(.headline)
