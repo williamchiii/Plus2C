@@ -7,10 +7,15 @@ struct MenuPage: View {
         NavigationStack{
             GeometryReader(){geometry in
                 ZStack{
+                    
                     GlobeView(showStars: false, transparentBg: true, movable: false)
                         .ignoresSafeArea()
+                        .overlay(
+                                WarmingCircle(tempIncrease: $tempIncrease)
+                            )
                         .padding(.top, 5)
                         .padding(.bottom, geometry.size.height/1.7)
+                        
                     VStack{
                         Text("Explore Changes")
                             .font(Font.largeTitle.bold())
