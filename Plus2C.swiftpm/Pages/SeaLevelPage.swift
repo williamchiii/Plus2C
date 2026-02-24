@@ -1,40 +1,36 @@
 import SwiftUI
 
 struct SeaLevelPage: View {
-    @State private var sliderValue = 0.0
-    @State private var isEditing = false
+    @Binding var tempIncrease: Double
     
     var body: some View{
         ZStack{
-            GlobeView()
-                .ignoresSafeArea()
-            GeometryReader{ geometry in
+            GeometryReader{ screen in
+                GlobeView(showStars: false, transparentBg: true)
+                    .ignoresSafeArea()
+                    .padding(.bottom, screen.size.height / 7)
+        
                 VStack{
-                    Text("Welcome to the second screen")
+                    Text("Sea Level Rise Visualizer")
                         .font(Font.largeTitle.bold())
                         .foregroundStyle(Color.white)
-                        .padding(.top, geometry.size.height * 0.05)
+                    Text("Explore the effects in real-time")
+                        .foregroundStyle(.white)
+                        .font(.headline)
                     Spacer()
-                    Slider(
-                        value: $sliderValue,
-                        in: 0...2,
-                       
-                        onEditingChanged: { editing in
-                            isEditing = editing
-                        }
-                    )
-                    .frame(width: geometry.size.width * 0.7)
-                    
-                    Text("Global Temperature Increase: \(sliderValue.formatted(.number.precision(.fractionLength(2))))°C")
-                                .foregroundColor(isEditing ? .blue : .white)
-                                .padding(.bottom, 70)
-                                
+                    TempControlCard(tempIncrease: $tempIncrease)
+                        .padding(.bottom, screen.size.height / 10)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             
         }
-        .background(Color.black)
+        .background(
+                Image("stars")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            )
     }
         
 }

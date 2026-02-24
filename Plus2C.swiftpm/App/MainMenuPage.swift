@@ -35,7 +35,7 @@ struct MainMenuPage: View {
                             title: "Sea Level Rise Explorer",
                             subtitle: "See the implications of sea level rise base on your selected temperature incease of \(tempIncrease)"
                         ){
-                            SeaLevelPage()
+                            SeaLevelPage(tempIncrease: $tempIncrease)
                         }
                         ExploreCard(
                             systemImage: "aqi.high",
