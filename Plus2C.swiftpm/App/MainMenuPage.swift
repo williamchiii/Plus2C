@@ -29,7 +29,7 @@ struct MainMenuPage: View {
                         
                         TempControlCard(tempIncrease: $tempIncrease)
                             
-                            
+                        
                         ExploreCard(
                             systemImage: "water.waves",
                             title: "Sea Level Rise Explorer",
