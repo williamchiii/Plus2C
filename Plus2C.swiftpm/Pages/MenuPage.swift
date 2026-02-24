@@ -17,8 +17,8 @@ struct MenuPage: View {
                             .foregroundStyle(.white)
                         Spacer()
                         TempControlCard(tempIncrease: $tempIncrease)
-                            .padding(.bottom, 30)
-
+                            
+                            
                         ExploreCard(
                             systemImage: "water.waves",
                             title: "Sea Level Rise Explorer",
@@ -55,13 +55,18 @@ struct MenuPage: View {
                             TimeMachinePage()
                         }
 
-                        .padding(.bottom, geometry.size.height/7)
+                        .padding(.bottom, geometry.size.height/5)
                     }
                 }
 
             }
         }
-        .background(Color.black)
+        .background(
+                Image("stars")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            )
     }
 }
 

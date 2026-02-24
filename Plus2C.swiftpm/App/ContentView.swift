@@ -12,7 +12,7 @@ struct ContentView: View {
                         .foregroundStyle(.white)
                         .padding(.top, 80)
                     Text("Explore how small shifts reshape our planet.")
-                        .font(Font.subheadline)
+                        .font(Font.headline)
                         .foregroundStyle(.white)
                     Spacer()
                     HStack{
