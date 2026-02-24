@@ -19,8 +19,8 @@ struct TempControlCard: View {
                     Spacer()
                     
                     Text(getSeverity(temperature: tempIncrease))
-                        .foregroundStyle(.white)
-                        .font(.headline)
+                        .foregroundStyle(getTempColor(temperature: tempIncrease))
+                        .font(.title3)
                         .padding(10)
                     
                 }
@@ -52,35 +52,45 @@ struct TempControlCard: View {
 
             }
             //this styles the box
-            .background(RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(.ultraThinMaterial)
+            .background(
+                ZStack{
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(.ultraThinMaterial)
+                    //inner glow
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .fill(
+                            LinearGradient(
+                                colors: [getTempColor(temperature: tempIncrease).opacity(0.10), .clear], startPoint: .top, endPoint: .bottom
+                            )
+                        )
+                }
             )
+            .shadow(color: getTempColor(temperature: tempIncrease).opacity(0.5), radius: 25, x: 0, y: 5)
             .frame(width: 700)
         }
     }
-    func getSeverity(temperature: Double) -> String{
-        var severity: String = ""
-        if temperature <= 0.0{
-            severity = "Pre-industrial"
+    func getSeverity(temperature: Double) -> String {
+        switch temperature {
+        case ...0.0:  return "Pre-industrial"
+        case ...0.5:  return "Slight changes"
+        case ...1.0:  return "Moderate impact"
+        case ...1.5:  return "Unsafe"
+        case ...2.0:  return "Dangerous"
+        case ...2.5:  return "Severe"
+        case ...3.0:  return "Catastrophic"
+        default:      return ""
         }
-        else if temperature <= 0.5{
-            severity = "Slight changes"
+    }
+    func getTempColor(temperature: Double) -> Color {
+        switch temperature {
+        case ...0.0:  return .white
+        case ...0.5:  return Color(red: 1.0, green: 0.8, blue: 0.8) // light pink
+        case ...1.0:  return Color(red: 1.0, green: 0.5, blue: 0.5) // pink-red
+        case ...1.5:  return Color(red: 0.9, green: 0.2, blue: 0.2) // red
+        case ...2.0:  return Color(red: 0.7, green: 0.1, blue: 0.1) // medium red
+        case ...2.5:  return Color(red: 0.6, green: 0, blue: 0) // dark red
+        case ...3.0:  return Color(red: 0.5, green: 0, blue: 0) // very dark red
+        default:      return Color(red: 0.2, green: 0.0, blue: 0.0)
         }
-        else if temperature <= 1{
-            severity = "Moderate impact"
-        }
-        else if temperature <= 1.5{
-            severity = "Unsafe"
-        }
-        else if temperature <= 2.0{
-            severity = "Dangerous"
-        }
-        else if temperature <= 2.5{
-            severity = "Severe"
-        }
-        else if temperature <= 3.0{
-            severity = "Catastrophic"
-        }
-        return severity
     }
 }
