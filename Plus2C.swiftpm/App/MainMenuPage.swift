@@ -61,7 +61,7 @@ struct MainMenuPage: View {
                             title: "Time Machine",
                             subtitle: "See the Earth in the past and future"
                         ){
-                            TimeMachineCard()
+                            Plus2cInfoPage()
                         }
                         ExploreCard(
                             systemImage: "info.circle",
