@@ -38,7 +38,7 @@ struct MainMenuPage: View {
                         ExploreCard(
                             systemImage: "water.waves",
                             title: "Sea Level Rise Explorer",
-                            subtitle: "See the implications of sea level rise base on temperature or manually adjust sea level rise"
+                            subtitle: "See the implications of sea level rise based on temperature and explore the flood simulator"
                         ){
                             SeaLevelPage(tempIncrease: $tempIncrease, floodValue: floodValue)
                         }

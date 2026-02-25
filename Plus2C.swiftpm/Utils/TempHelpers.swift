@@ -74,3 +74,25 @@ func floodImage(floodValue: Double) -> String{
     default: return "0m"
     }
 }
+func getFloodColor(floodValue: Double) -> Color {
+    switch floodValue {
+        
+    case ...40.0:
+        return Color(red: 100/255, green: 180/255, blue: 255/255) // 40m
+        
+    case ...50.0:
+        return Color(red: 75/255, green: 160/255, blue: 245/255)
+        
+    case ...60.0:
+        return Color(red: 50/255, green: 140/255, blue: 235/255)
+        
+    case ...70.0:
+        return Color(red: 25/255, green: 120/255, blue: 225/255)
+        
+    case ...80.0:
+        return Color(red: 0/255, green: 100/255, blue: 220/255) // 80m
+        
+    default:
+        return Color(red: 0/255, green: 100/255, blue: 220/255)
+    }
+}

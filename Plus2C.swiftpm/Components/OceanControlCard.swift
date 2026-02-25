@@ -46,12 +46,12 @@ struct OceanControlCard: View {
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .fill(
                         LinearGradient(
-                            colors: [.blue.opacity(0.10), .clear], startPoint: .top, endPoint: .bottom
+                            colors: [getFloodColor(floodValue: floodValue).opacity(0.20), .clear], startPoint: .top, endPoint: .bottom
                         )
                     )
             }
         )
-        .shadow(color: .blue.opacity(0.5), radius: 25, x: 0, y: 5)
+        .shadow(color: getFloodColor(floodValue: floodValue).opacity(0.5), radius: 25, x: 0, y: 5)
         .frame(width: 700)
     }
 

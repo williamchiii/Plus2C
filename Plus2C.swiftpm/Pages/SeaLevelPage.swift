@@ -3,7 +3,7 @@ import SwiftUI
 struct SeaLevelPage: View {
     @Binding var tempIncrease: Double
     @State var floodValue: Double
-    @State private var selectedMode: Mode = .temp
+    @State private var selectedMode: Mode = .seaLevel
     
     var body: some View{
        ZStack{
