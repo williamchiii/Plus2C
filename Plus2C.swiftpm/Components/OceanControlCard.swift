@@ -1,38 +1,58 @@
 import SwiftUI
 
 struct OceanControlCard: View {
-    @State private var speed = 50.0
+    @State private var floodValue = 15.0
     @State private var isEditing = false
     
     var body: some View {
         VStack{
-            Text("In the VStack")
-                .foregroundStyle(Color(.white))
-                .font(Font.headline)
             HStack{
-                Text("In the HStack")
+                Image(systemName: "water.waves.and.arrow.trianglehead.up")
                     .foregroundStyle(Color(.white))
-                    .font(Font.headline)
+                    .font(Font.title2)
+                    
+                Text("Flood Simulator")
+                    .foregroundStyle(Color(.white))
+                    .font(Font.title2)
             }
+            .padding(.top, 20)
             Slider(
-                    value: $speed,
-                    in: 0...100,
-                    step: 5
+                    value: $floodValue,
+                    in: 0...80,
+                    step: 20
                 ) {
-                    Text("Speed")
                 } minimumValueLabel: {
-                    Text("0")
+                    Text("0 m")
+                        .foregroundStyle(Color(.white))
+                        .padding(.horizontal, 15)
                 } maximumValueLabel: {
-                    Text("100")
+                    Text("80 m")
+                        .foregroundStyle(Color(.white))
+                        .padding(.horizontal, 15)
                 } onEditingChanged: { editing in
                     isEditing = editing
                 }
-                Text("\(speed)")
-                    .foregroundColor(isEditing ? .red : .blue)
-            Text("Rise Amount")
-                .foregroundStyle(Color(.white))
-                .font(Font.headline)
+                .tint(.blue)
+                Text("+\(Int(floodValue)) m")
+                .foregroundColor(.white)
+                .font(.title2.bold())
+                .padding(.bottom, 20)
         }
+        .background(
+            ZStack{
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(.ultraThinMaterial)
+                //inner glow
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(
+                        LinearGradient(
+                            colors: [.blue.opacity(0.10), .clear], startPoint: .top, endPoint: .bottom
+                        )
+                    )
+            }
+        )
+        .shadow(color: .blue.opacity(0.5), radius: 25, x: 0, y: 5)
+        .frame(width: 700)
     }
 
 }

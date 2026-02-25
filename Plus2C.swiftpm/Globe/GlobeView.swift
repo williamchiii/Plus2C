@@ -103,7 +103,7 @@ struct GlobeView: UIViewRepresentable {
         globeNode.eulerAngles = SCNVector3(0.15, -0.6, 0)
         
         //slow rotation
-        let rotation = SCNAction.rotateBy(x: 0, y: CGFloat.pi * 2, z: 0, duration: 100)
+        let rotation = SCNAction.rotateBy(x: 0, y: CGFloat.pi * 2, z: 0, duration: 120)
         globeNode.runAction(.repeatForever(rotation))
         
         return view

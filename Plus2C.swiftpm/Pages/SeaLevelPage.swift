@@ -20,13 +20,14 @@ struct SeaLevelPage: View {
                         .font(.headline)
                     Spacer()
                     ModeSelector(selectedMode: $selectedMode)
-                        .padding(.bottom, 20)
+                        .padding(.bottom, 10)
                     if selectedMode == .temp{
                         TempControlCard(tempIncrease: $tempIncrease)
-                            .padding(.bottom, screen.size.height / 10)
+                            .padding(.bottom, screen.size.height / 11)
                     }
                     else{
                         OceanControlCard()
+                            .padding(.bottom, screen.size.height / 12)
                     }
                     
                 }
