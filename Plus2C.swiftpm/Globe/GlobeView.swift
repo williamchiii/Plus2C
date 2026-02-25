@@ -87,7 +87,7 @@ struct GlobeView: UIViewRepresentable {
             
         }
         else{
-            if let earthImage = UIImage(named: "earthApril"){
+            if let earthImage = UIImage(named: "3c6m"){
                 material.diffuse.contents = earthImage
             } else{
                 print("Error: earthApril could NOT be loaded")

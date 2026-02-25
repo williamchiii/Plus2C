@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SeaLevelPage: View {
     @Binding var tempIncrease: Double
+    @State private var selectedMode: Mode = .temp
     
     var body: some View{
         ZStack{
@@ -18,8 +19,15 @@ struct SeaLevelPage: View {
                         .foregroundStyle(.white)
                         .font(.headline)
                     Spacer()
-                    TempControlCard(tempIncrease: $tempIncrease)
-                        .padding(.bottom, screen.size.height / 10)
+                    ModeSelector(selectedMode: $selectedMode)
+                    if selectedMode == .temp{
+                        TempControlCard(tempIncrease: $tempIncrease)
+                            .padding(.bottom, screen.size.height / 10)
+                    }
+                    else{
+                        OceanControlCard()
+                    }
+                    
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
