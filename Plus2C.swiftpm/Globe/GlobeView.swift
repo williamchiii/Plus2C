@@ -4,10 +4,12 @@ import SceneKit
 //bridges SceneKit into SwiftUI
 //UIViewRepresentable allows us to embed an SCNView inside SwiftUI
 struct GlobeView: UIViewRepresentable {
+    @Binding var tempIncrease: Double
     var isTopographic: Bool = false
     var showStars: Bool = true
     var transparentBg: Bool = false
     var movable: Bool = true
+    var textureSwap: Bool = false
     //Functions
     
     //called once when view is created
@@ -34,7 +36,6 @@ struct GlobeView: UIViewRepresentable {
             }
             
         }
-        
         
         //Allow user interaction
         if movable{
@@ -86,18 +87,18 @@ struct GlobeView: UIViewRepresentable {
             }
             
         }
-        else{
-            if let earthImage = UIImage(named: "3c6m"){
-                material.diffuse.contents = earthImage
-            } else{
-                print("Error: earthApril could NOT be loaded")
-            }
-            
-
+        else if textureSwap == true {
+            material.diffuse.contents = UIImage(named: globeImage(temperature: tempIncrease))
         }
+        else{
+            material.diffuse.contents = UIImage(named: "earthApril")
+        }
+        
+        
         sphere.firstMaterial = material
         //create globe node to hold the sphere
         let globeNode = SCNNode(geometry: sphere)
+        globeNode.name = "globe"  // ← Add this line!
         scene.rootNode.addChildNode(globeNode)
         globeNode.eulerAngles = SCNVector3(0.15, -0.6, 0)
         
@@ -108,6 +109,12 @@ struct GlobeView: UIViewRepresentable {
         return view
     }
     func updateUIView(_ uiView: SCNView, context: Context) {
+        if textureSwap == true{
+            guard let globeNode = uiView.scene?.rootNode.childNode(withName: "globe", recursively: false),
+                     let material = globeNode.geometry?.firstMaterial else { return }
+               
+               material.diffuse.contents = UIImage(named: globeImage(temperature: tempIncrease))
+        }
         
     }
 }

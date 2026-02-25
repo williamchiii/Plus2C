@@ -7,7 +7,7 @@ struct SeaLevelPage: View {
     var body: some View{
         ZStack{
             GeometryReader{ screen in
-                GlobeView(showStars: false, transparentBg: true)
+                GlobeView(tempIncrease: $tempIncrease, showStars: false, transparentBg: true, textureSwap: true)
                     .ignoresSafeArea()
                     .padding(.bottom, screen.size.height / 7)
         
@@ -20,6 +20,7 @@ struct SeaLevelPage: View {
                         .font(.headline)
                     Spacer()
                     ModeSelector(selectedMode: $selectedMode)
+                        .padding(.bottom, 20)
                     if selectedMode == .temp{
                         TempControlCard(tempIncrease: $tempIncrease)
                             .padding(.bottom, screen.size.height / 10)

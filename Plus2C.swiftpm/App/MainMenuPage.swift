@@ -12,7 +12,7 @@ struct MainMenuPage: View {
                 
                 ZStack{
                     
-                    GlobeView(showStars: false, transparentBg: true, movable: false)
+                    GlobeView(tempIncrease: $tempIncrease, showStars: false, transparentBg: true, movable: false, textureSwap: false)
                         .ignoresSafeArea()
                         .overlay(
                                 WarmingCircle(tempIncrease: $tempIncrease)

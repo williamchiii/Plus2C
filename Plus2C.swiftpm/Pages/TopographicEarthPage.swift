@@ -2,9 +2,11 @@ import SwiftUI
 
 //This is just an example preview so far, not implemented fully yet.
 struct TopographicEarthPage: View{
+    @Binding var tempIncrease: Double
+    
     var body: some View{
         ZStack{
-            GlobeView(isTopographic: true)
+            GlobeView(tempIncrease: $tempIncrease, isTopographic: true)
                 .ignoresSafeArea()
             VStack{
                 Text("Explore Earth's Topography")

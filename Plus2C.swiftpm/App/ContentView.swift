@@ -1,10 +1,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Binding var tempIncrease: Double
+    init(tempIncrease: Binding<Double> = .constant(0.0)) {
+            self._tempIncrease = tempIncrease
+        }
     var body: some View {
         NavigationStack{
             ZStack {
-                GlobeView()
+                GlobeView(tempIncrease: $tempIncrease)
                     .ignoresSafeArea()
                 VStack {
                     Text("+2°C")
