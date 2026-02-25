@@ -5,15 +5,18 @@ import SceneKit
 //UIViewRepresentable allows us to embed an SCNView inside SwiftUI
 struct GlobeView: UIViewRepresentable {
     @Binding var tempIncrease: Double
+    @Binding var floodValue: Double
     var isTopographic: Bool = false
     var showStars: Bool = true
     var transparentBg: Bool = false
     var movable: Bool = true
     var textureSwap: Bool = false
+    var floodSim: Bool = false
     //Functions
     
     //called once when view is created
     func makeUIView(context: Context) -> SCNView {
+
         //create SceneView Kit
         let view = SCNView()
         if !transparentBg{
@@ -109,12 +112,16 @@ struct GlobeView: UIViewRepresentable {
         return view
     }
     func updateUIView(_ uiView: SCNView, context: Context) {
+        print(floodSim)
         if textureSwap == true{
             guard let globeNode = uiView.scene?.rootNode.childNode(withName: "globe", recursively: false),
                      let material = globeNode.geometry?.firstMaterial else { return }
+            if !floodSim {
+                material.diffuse.contents = UIImage(named: globeImage(temperature: tempIncrease))
+            } else{
+                material.diffuse.contents = UIImage(named: floodImage(floodValue: floodValue))
                
-               material.diffuse.contents = UIImage(named: globeImage(temperature: tempIncrease))
+            }
         }
-        
     }
 }

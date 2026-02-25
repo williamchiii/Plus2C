@@ -53,14 +53,24 @@ func globeTempColor(temperature: Double) -> Color {
 }
 func globeImage(temperature: Double) -> String {
     switch temperature {
-    case ...0.0: return "earthApril"  //default globe; no sea level rise
-    case ...0.5: return "0.5to1c1m" //1m sea level increase
-    case ...1.0: return "0.5to1c1m" //1m sea level increase
-    case ...1.3: return "1.3c2m" //2m sea level increase
-    case ...1.5: return "1.5c3m" //3m sea level increase
-    case ...2.0: return "2c4m" //4m sea level increase
-    case ...2.5: return "2.5c5m" //5m sea level increase
-    case ...3.0: return "3c6m" //6m sea level increase
-    default:     return "earthApri"
+        case ...0.0: return "earthApril"  //default globe; no sea level rise
+        case ...0.5: return "0.5to1c1m" //1m sea level increase
+        case ...1.0: return "0.5to1c1m" //1m sea level increase
+        case ...1.3: return "1.3c2m" //2m sea level increase
+        case ...1.5: return "1.5c3m" //3m sea level increase
+        case ...2.0: return "2c4m" //4m sea level increase
+        case ...2.5: return "2.5c5m" //5m sea level increase
+        case ...3.0: return "3c6m" //6m sea level increase
+        default: return "earthApri"
+    }
+}
+func floodImage(floodValue: Double) -> String{
+    switch floodValue {
+        case ...0.0: return "0m"
+        case ...20.0: return "20m"
+        case ...40.0: return "40m"
+        case ...60.0: return "60m"
+        case ...80.0: return "80m"
+    default: return "0m"
     }
 }

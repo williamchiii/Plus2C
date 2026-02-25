@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct OceanControlCard: View {
-    @State private var floodValue = 15.0
+    @Binding var floodValue: Double
     @State private var isEditing = false
     
     var body: some View {

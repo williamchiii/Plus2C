@@ -2,13 +2,15 @@ import SwiftUI
 
 struct ContentView: View {
     @Binding var tempIncrease: Double
-    init(tempIncrease: Binding<Double> = .constant(0.0)) {
+    @Binding var floodValue: Double
+    init(tempIncrease: Binding<Double> = .constant(0.0), floodValue: Binding<Double> = .constant(0.0)) {
             self._tempIncrease = tempIncrease
+            self._floodValue = floodValue
         }
     var body: some View {
         NavigationStack{
             ZStack {
-                GlobeView(tempIncrease: $tempIncrease)
+                GlobeView(tempIncrease: $tempIncrease, floodValue: $floodValue)
                     .ignoresSafeArea()
                 VStack {
                     Text("+2°C")
@@ -20,7 +22,7 @@ struct ContentView: View {
                         .foregroundStyle(.white)
                     Spacer()
                     HStack{
-                        NavigationLink(destination: MainMenuPage()){
+                        NavigationLink(destination: MainMenuPage(floodValue: $floodValue)){
                             Text("Begin Exploring")
                         }
                         .font(.headline)

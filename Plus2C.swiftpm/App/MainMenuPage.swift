@@ -2,6 +2,11 @@ import SwiftUI
 
 struct MainMenuPage: View {
     @State private var tempIncrease = 0.0
+    @Binding var floodValue: Double
+    
+    init(floodValue: Binding<Double> = .constant(0.0)) {
+            self._floodValue = floodValue
+        }
     
     var body: some View {
         NavigationStack{
@@ -12,7 +17,7 @@ struct MainMenuPage: View {
                 
                 ZStack{
                     
-                    GlobeView(tempIncrease: $tempIncrease, showStars: false, transparentBg: true, movable: false, textureSwap: false)
+                    GlobeView(tempIncrease: $tempIncrease, floodValue: $floodValue, showStars: false, transparentBg: true, movable: false, textureSwap: false)
                         .ignoresSafeArea()
                         .overlay(
                                 WarmingCircle(tempIncrease: $tempIncrease)
@@ -35,7 +40,7 @@ struct MainMenuPage: View {
                             title: "Sea Level Rise Explorer",
                             subtitle: "See the implications of sea level rise base on temperature or manually adjust sea level rise"
                         ){
-                            SeaLevelPage(tempIncrease: $tempIncrease)
+                            SeaLevelPage(tempIncrease: $tempIncrease, floodValue: floodValue)
                         }
                         ExploreCard(
                             systemImage: "aqi.high",
