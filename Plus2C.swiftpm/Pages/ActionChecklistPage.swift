@@ -100,8 +100,7 @@ struct ActionCategorySection: View{
     let category: ActionCategory
     let actions: [ClimateAction]
     let onToggle: (ClimateAction) -> Void
-    @State private var isExpanded = true
-    
+    @State private var isExpanded = false
     var completedCount: Int{
         actions.filter{$0.isCompleted}.count
     }
@@ -156,6 +155,9 @@ struct ActionCategorySection: View{
                 .padding(.bottom)
                 .transition(.opacity.combined(with: .scale(scale: 0.95, anchor: .top)))
             }
+        }
+        .onAppear {
+            isExpanded = category == .energy
         }
         .background(
             RoundedRectangle(cornerRadius: 20)
