@@ -334,16 +334,8 @@ struct AnimatedEarthIcon: View {
             withAnimation(.linear(duration: 20).repeatForever(autoreverses: false)) {
                 rotation = 360
             }
-            withAnimation(.easeInOut(duration: 2).repeatForever(autoreverses: true)) {
-                pulse = true
-            }
         }
-        .onChange(of: timeFrame) { _ in
-            // Reset animation on timeframe change
-            withAnimation(.spring(response: 0.5)) {
-                rotation += 45
-            }
-        }
+
     }
 }
 
