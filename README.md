@@ -13,14 +13,14 @@ An interactive Swift Playgrounds app exploring the consequences of a +2°C rise 
 ## Requirements
 
 - Swift Playgrounds 4+ or Xcode 15+
-- iPadOS 16+ / macOS 13+
-
+- iPadOS 17+ (iPad Portrait Orientation is preferred)
+  
 ## Getting Started
 
 1. Clone the repository
-2. Open `Plus2C.swiftpm` in Swift Playgrounds or Xcode
+2. Open `Plus2C.swiftpm` in Xcode
 3. Run the app
 
 ## Built With
 
-SwiftUI · Swift Playgrounds
+SwiftUI · XCode
