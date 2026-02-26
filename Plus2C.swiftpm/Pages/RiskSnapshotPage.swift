@@ -11,7 +11,20 @@ struct RiskSnapshotPage: View{
                         Text("Risk Snapshot")
                             .foregroundStyle(.white)
                             .font(.largeTitle.bold())
-                            .padding(.bottom, geo.size.width/5)
+                            .padding(.top, 20)
+                        
+                        // Dynamic tagline
+                        DynamicTagline(timeFrame: selectedTimeFrame)
+                            .padding(.bottom, 8)
+                        
+                        // Animated Earth Icon
+                        AnimatedEarthIcon(timeFrame: selectedTimeFrame)
+                            .padding(.vertical, 16)
+                        
+                        // Climate stats
+                        ClimateStatsRow(timeFrame: selectedTimeFrame)
+                            .padding(.bottom, 24)
+                        
                         TimeFrameSelector(selectedTimeFrame: $selectedTimeFrame)
                         OverallRiskCard(timeframe: selectedTimeFrame)
                         RiskCategoryCard(
@@ -235,12 +248,12 @@ struct RiskCategoryCard: View {
                     if !isExpanded{
                         Image(systemName: "chevron.right")
                             .foregroundStyle(.black.opacity(0.8))
-                       // isExpanded.toggle()
+                            .font(.headline)
                     }
                     else{
                         Image(systemName: "chevron.down")
                             .foregroundStyle(.black.opacity(0.8))
-                            .font(.caption)
+                            .font(.headline)
                       //  isExpanded.toggle()
                     }
                 }
@@ -266,3 +279,132 @@ struct RiskCategoryCard: View {
         )
     }
 }
+// MARK: - Header Visual Components
+
+struct DynamicTagline: View {
+    let timeFrame: TimeFrame
+    
+    var tagline: String {
+        switch timeFrame {
+        case .year1900: return "Before the warming began"
+        case .current: return "The climate crisis is now"
+        case .year2050: return "Critical decisions ahead"
+        case .year2100: return "The future we're creating"
+        }
+    }
+    
+    var body: some View {
+        Text(tagline)
+            .font(.title3)
+            .fontWeight(.medium)
+            .foregroundStyle(.white.opacity(0.9))
+            .multilineTextAlignment(.center)
+            .padding(.horizontal, 40)
+    }
+}
+
+struct AnimatedEarthIcon: View {
+    let timeFrame: TimeFrame
+    @State private var rotation: Double = 0
+    @State private var pulse: Bool = false
+    
+    var earthColor: Color {
+        switch timeFrame {
+        case .year1900: return .blue
+        case .current: return .orange
+        case .year2050: return Color(red: 255/255, green: 105/255, blue: 0/255)
+        case .year2100: return .red
+        }
+    }
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(earthColor.opacity(0.2))
+                .frame(width: pulse ? 130 : 120, height: pulse ? 130 : 120)
+                .blur(radius: 20)
+            
+            Image(systemName: "globe.americas.fill")
+                .font(.system(size: 80))
+                .foregroundStyle(earthColor)
+                .rotationEffect(.degrees(rotation))
+                .shadow(color: earthColor.opacity(0.5), radius: 10)
+        }
+        .onAppear {
+            withAnimation(.linear(duration: 20).repeatForever(autoreverses: false)) {
+                rotation = 360
+            }
+            withAnimation(.easeInOut(duration: 2).repeatForever(autoreverses: true)) {
+                pulse = true
+            }
+        }
+        .onChange(of: timeFrame) { _ in
+            // Reset animation on timeframe change
+            withAnimation(.spring(response: 0.5)) {
+                rotation += 45
+            }
+        }
+    }
+}
+
+struct ClimateStatsRow: View {
+    let timeFrame: TimeFrame
+    
+    var stats: (temp: String, co2: String, sealevel: String) {
+        switch timeFrame {
+        case .year1900: return ("+0.0°C", "280 ppm", "+0 cm")
+        case .current: return ("+1.3°C", "420 ppm", "+21 cm")
+        case .year2050: return ("+2.0°C", "500 ppm", "+45 cm")
+        case .year2100: return ("+3.5°C", "650 ppm", "+100 cm")
+        }
+    }
+    
+    var body: some View {
+        HStack(spacing: 20) {
+            StatBadge(icon: "thermometer.medium", value: stats.temp, label: "Temp Rise")
+            StatBadge(icon: "cloud.fill", value: stats.co2, label: "CO₂ Level")
+            StatBadge(icon: "water.waves", value: stats.sealevel, label: "Sea Level")
+        }
+    }
+}
+
+struct StatBadge: View {
+    let icon: String
+    let value: String
+    let label: String
+    
+    var body: some View {
+        VStack(spacing: 4) {
+            Image(systemName: icon)
+                .font(.title3)
+                .foregroundStyle(.white.opacity(0.9))
+            Text(value)
+                .font(.headline.bold())
+                .foregroundStyle(.white)
+            Text(label)
+                .font(.caption2)
+                .foregroundStyle(.white.opacity(0.7))
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 16)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(.white.opacity(0.15))
+                .shadow(color: .black.opacity(0.2), radius: 5)
+        )
+    }
+}
+
+//regular (portrait preview)
+#Preview {
+    RiskSnapshotPage()
+}
+//landscape preview
+/*
+struct RiskSnapshotPage_Previews: PreviewProvider {
+    static var previews: some View {
+        RiskSnapshotPage()
+            .previewInterfaceOrientation(.landscapeRight)
+    }
+}
+*/
