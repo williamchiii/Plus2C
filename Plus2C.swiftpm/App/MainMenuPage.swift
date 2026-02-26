@@ -45,7 +45,7 @@ struct MainMenuPage: View {
                         ExploreCard(
                             systemImage: "aqi.high",
                             title: "Risk Snapshot",
-                            subtitle: "Explore current and future risk outlooks"
+                            subtitle: "Explore past, current and future risk outlooks"
                         ){
                             RiskSnapshotPage()
                         }
@@ -59,7 +59,7 @@ struct MainMenuPage: View {
                         ExploreCard(
                             systemImage: "timelapse",
                             title: "Time Machine",
-                            subtitle: "See the Earth in the past and future"
+                            subtitle: "See how we got here and what the future holds"
                         ){
                             Plus2cInfoPage()
                         }
@@ -77,6 +77,7 @@ struct MainMenuPage: View {
 
             }
         }
+        
         .background(
                 Image("stars")
                     .resizable()
@@ -84,5 +85,11 @@ struct MainMenuPage: View {
                     .ignoresSafeArea()
             )
     }
+    
 }
 
+#Preview {
+    NavigationStack{
+        MainMenuPage()
+    }
+}

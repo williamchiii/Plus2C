@@ -279,8 +279,6 @@ struct RiskCategoryCard: View {
         )
     }
 }
-// MARK: - Header Visual Components
-
 struct DynamicTagline: View {
     let timeFrame: TimeFrame
     
