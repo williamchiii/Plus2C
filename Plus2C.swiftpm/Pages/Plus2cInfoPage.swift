@@ -2,9 +2,10 @@ import SwiftUI
 
 struct Plus2cInfoPage: View{
     var body: some View{
-        ScrollView{
-            GeometryReader {geo in
+        GeometryReader { geo in
+            ScrollView{
                 VStack{
+                    //the title and catchline
                     VStack{
                         Image(systemName: "thermometer.variable.badge.clock")
                             .foregroundStyle(.red)
@@ -13,12 +14,16 @@ struct Plus2cInfoPage: View{
                             .foregroundStyle(.white)
                             .font(.largeTitle.bold())
                         Text("The critical threshold")
-                            .foregroundStyle(.white)
                             .font(.headline)
+                            .foregroundStyle(.white.opacity(0.9))
+                            .fontWeight(.medium)
                     }
                     .padding(.top, 20)
-                        
+                    .padding(.bottom, geo.size.height > geo.size.width ? (geo.size.height / 9) : 0)
+                    
+                    //the two cards
                     VStack{
+                        //the symbola and title of the first card
                         HStack{
                             Image(systemName: "exclamationmark.bubble.fill")
                                 .foregroundStyle(.orange)
@@ -40,11 +45,12 @@ struct Plus2cInfoPage: View{
                             .padding(.bottom, 30)
                         
                     }
-                    .frame(width: geo.size.width/1.3)
+                    .frame(width: geo.size.width/1.2)
                     .background(
                         RoundedRectangle(cornerRadius: 20)
                             .foregroundStyle(.white.opacity(0.9))
                     )
+                    //the title of the second card
                     VStack{
                         HStack{
                             Image(systemName: "globe.europe.africa.fill")
@@ -63,7 +69,7 @@ struct Plus2cInfoPage: View{
                             title: "+1.3°C",
                             description: "Today",
                             isCurrent: true,
-                            theWidth: geo.size.width/1.4
+                            theWidth: geo.size.width/1.3
                         )
 
                         tempCard(
@@ -71,7 +77,7 @@ struct Plus2cInfoPage: View{
                             title: "+1.5°C",
                             description: "Paris Agreement Lower Target",
                             isCurrent: false,
-                            theWidth: geo.size.width/1.4
+                            theWidth: geo.size.width/1.3
                         )
 
                         tempCard(
@@ -79,7 +85,7 @@ struct Plus2cInfoPage: View{
                             title: "‼️ +2.0°C",
                             description: "Irreversible damage",
                             isCurrent: false,
-                            theWidth: geo.size.width/1.4
+                            theWidth: geo.size.width/1.3
                         )
 
                         tempCard(
@@ -87,27 +93,25 @@ struct Plus2cInfoPage: View{
                             title: "+3.0°C",
                             description: "Catastrophic",
                             isCurrent: false,
-                            theWidth: geo.size.width/1.4
+                            theWidth: geo.size.width/1.3
                         )                    }
                     .padding(.horizontal)
                     .padding(.top, 15)
                     .padding(.bottom, 30)
-                    .frame(width: geo.size.width/1.3)
+                    .frame(width: geo.size.width/1.2)
                     .background(
                         RoundedRectangle(cornerRadius: 20)
                             .foregroundStyle(.white.opacity(0.9))
                     )
 
                 }
-                
                 .frame(width: geo.size.width, alignment: .center)
             }
+            .background(
+                Image("stars")
+                    .ignoresSafeArea()
+            )
         }
-        .background(
-            Image("stars")
-                .ignoresSafeArea()
-        )
-         
     }
 }
 

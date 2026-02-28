@@ -56,6 +56,7 @@ struct MainMenuPage: View {
                         ){
                             ActionChecklistPage()
                         }
+                        /*implement in future
                         ExploreCard(
                             systemImage: "timelapse",
                             title: "Time Machine",
@@ -63,6 +64,7 @@ struct MainMenuPage: View {
                         ){
                             Plus2cInfoPage()
                         }
+                         */
                         ExploreCard(
                             systemImage: "info.circle",
                             title: "+2°C",

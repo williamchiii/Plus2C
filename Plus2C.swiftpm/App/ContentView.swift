@@ -19,7 +19,8 @@ struct ContentView: View {
                         .padding(.top, 80)
                     Text("Explore how small shifts reshape our planet.")
                         .font(Font.headline)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.white.opacity(0.9))
+                        .fontWeight(.medium)
                     Spacer()
                     HStack{
                         NavigationLink(destination: MainMenuPage(floodValue: $floodValue)){

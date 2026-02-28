@@ -15,6 +15,8 @@ struct ActionChecklistPage: View{
                     Text("Small steps, big impact")
                         .font(.headline)
                         .foregroundStyle(.white)
+                        .foregroundStyle(.white.opacity(0.9))
+                        .fontWeight(.medium)
                 }
                 .padding(.top, 20)
                 
