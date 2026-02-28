@@ -17,12 +17,12 @@ struct TempControlCard: View {
                 
                 Text("Global Temperature Increase")
                     .foregroundStyle(.white)
-                    .font(.title3)
+                    .font(.headline)
                 Spacer()
                 
                 Text(getSeverity(temperature: tempIncrease))
                     .foregroundStyle(getTempColor(temperature: tempIncrease))
-                    .font(.title3)
+                    .font(.headline)
                     .padding(10)
                 
             }

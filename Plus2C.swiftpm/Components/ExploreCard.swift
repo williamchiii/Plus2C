@@ -43,7 +43,7 @@ struct ExploreCard<Destination: View>: View {
                     }
                 }
             }
-            .buttonStyle(.plain)
+            .buttonStyle(ScaleOnlyButtonStyle())
             .padding(.horizontal, 20)
             .padding(.vertical, 10)
             .background(.white.opacity(0.9), in:
@@ -54,8 +54,15 @@ struct ExploreCard<Destination: View>: View {
         .frame(height: 60)
         
     }
-}
 
+}
+struct ScaleOnlyButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
+            .animation(.easeInOut(duration: 0.12), value: configuration.isPressed)
+    }
+}
 #Preview {
     MainMenuPage()
 }

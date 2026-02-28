@@ -3,6 +3,8 @@ import SwiftUI
 struct ContentView: View {
     @Binding var tempIncrease: Double
     @Binding var floodValue: Double
+    @State private var isPressed = false
+    
     init(tempIncrease: Binding<Double> = .constant(0.0), floodValue: Binding<Double> = .constant(0.0)) {
             self._tempIncrease = tempIncrease
             self._floodValue = floodValue
@@ -29,10 +31,21 @@ struct ContentView: View {
                         .font(.headline)
                         .padding(.horizontal, 40)
                         .padding(.vertical, 14)
-                        .background(.white)
+                        .background(.white.opacity(isPressed ? 0.8 : 1.0))
                         .foregroundColor(.black)
                         .clipShape(Capsule())
+                        .scaleEffect(isPressed ? 0.95 : 1.0)
+                        .animation(.easeInOut(duration: 0.2), value: isPressed)
                         .padding(.bottom, 100)
+                        .simultaneousGesture(
+                            DragGesture(minimumDistance: 0)
+                                .onChanged { _ in
+                                    isPressed = true
+                                }
+                                .onEnded { _ in
+                                    isPressed = false
+                                }
+                        )
                         
                     }
                 }
