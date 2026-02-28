@@ -26,54 +26,62 @@ struct MainMenuPage: View {
                         .padding(.bottom, geometry.size.height/1.8)
                         
 
-                    VStack{
+                    VStack(spacing: 0) {
                         Text("Explore Changes")
                             .font(Font.largeTitle.bold())
                             .foregroundStyle(.white)
-                        Spacer()
+                            .padding(.top, 8)
+                            .padding(.bottom, 8)
                         
-                        TempControlCard(tempIncrease: $tempIncrease)
-                            
-                        
-                        ExploreCard(
-                            systemImage: "water.waves",
-                            title: "Sea Level Rise Explorer",
-                            subtitle: "See the implications of sea level rise based on temperature and explore the flood simulator"
-                        ){
-                            SeaLevelPage(tempIncrease: $tempIncrease, floodValue: floodValue)
+                        ScrollView {
+                            VStack(spacing:5) {
+                                Spacer()
+                                    .frame(height: geometry.size.height * 0.35)
+                                TempControlCard(tempIncrease: $tempIncrease)
+                                    .frame(width: geometry.size.width * 0.85)
+                                    
+                                ExploreCard(
+                                    systemImage: "water.waves",
+                                    title: "Sea Level Rise Explorer",
+                                    subtitle: "See the implications of sea level rise based on temperature and explore the flood simulator"
+                                ){
+                                    SeaLevelPage(tempIncrease: $tempIncrease, floodValue: floodValue)
+                                }
+                                ExploreCard(
+                                    systemImage: "aqi.high",
+                                    title: "Risk Snapshot",
+                                    subtitle: "Explore past, current and future risk outlooks"
+                                ){
+                                    RiskSnapshotPage()
+                                }
+                                ExploreCard(
+                                    systemImage: "checklist",
+                                    title: "Action Checklist",
+                                    subtitle: "Get started with your climate action plan"
+                                ){
+                                    ActionChecklistPage()
+                                }
+                                /*implement in future
+                                ExploreCard(
+                                    systemImage: "timelapse",
+                                    title: "Time Machine",
+                                    subtitle: "See how we got here and what the future holds"
+                                ){
+                                    Plus2cInfoPage()
+                                }
+                                 */
+                                ExploreCard(
+                                    systemImage: "info.circle",
+                                    title: "+2°C",
+                                    subtitle: "Learn more about the critical +2°C threshold"
+                                ){
+                                    Plus2cInfoPage()
+                                }
+                                
+                                .padding(.bottom, geometry.size.height/CGFloat(cardBottomPaddingRatio))
+                            }
                         }
-                        ExploreCard(
-                            systemImage: "aqi.high",
-                            title: "Risk Snapshot",
-                            subtitle: "Explore past, current and future risk outlooks"
-                        ){
-                            RiskSnapshotPage()
-                        }
-                        ExploreCard(
-                            systemImage: "checklist",
-                            title: "Action Checklist",
-                            subtitle: "Get started with your climate action plan"
-                        ){
-                            ActionChecklistPage()
-                        }
-                        /*implement in future
-                        ExploreCard(
-                            systemImage: "timelapse",
-                            title: "Time Machine",
-                            subtitle: "See how we got here and what the future holds"
-                        ){
-                            Plus2cInfoPage()
-                        }
-                         */
-                        ExploreCard(
-                            systemImage: "info.circle",
-                            title: "+2°C",
-                            subtitle: "Learn more about the critical +2°C threshold"
-                        ){
-                            Plus2cInfoPage()
-                        }
-                        
-                        .padding(.bottom, geometry.size.height/CGFloat(cardBottomPaddingRatio))
+                        .scrollIndicators(.hidden)
                     }
                 }
 

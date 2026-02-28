@@ -31,10 +31,12 @@ struct SeaLevelPage: View {
                         .padding(.bottom, 10)
                     if selectedMode == .temp{
                         TempControlCard(tempIncrease: $tempIncrease)
+                            .frame(width: screen.size.width*0.85)
                             .padding(.bottom, screen.size.height / 11)
                     }
                     else{
                         OceanControlCard(floodValue: $floodValue)
+                            .frame(width: screen.size.width * 0.85)
                             .padding(.bottom, screen.size.height / 12)
                     }
                     

@@ -7,9 +7,9 @@ struct ExploreCard<Destination: View>: View {
     @ViewBuilder let destination: () -> Destination
     
     var body: some View {
-        NavigationLink(destination: destination()){
+        GeometryReader{geometry in
+            NavigationLink(destination: destination()){
             //HStack spacing controlsspacing between the Icon and Text VStack
-            GeometryReader{geometry in
                 HStack(spacing: 20) {
                     Image(systemName: systemImage)
                         .font(.title3)
@@ -41,17 +41,21 @@ struct ExploreCard<Destination: View>: View {
                         Image(systemName: "chevron.right")
                             .foregroundStyle(Color(.black))
                     }
-                        
                 }
-                
             }
+            .buttonStyle(.plain)
             .padding(.horizontal, 20)
             .padding(.vertical, 10)
             .background(.white.opacity(0.9), in:
                             RoundedRectangle(cornerRadius: 20))
-            .frame(width: 700, height: 60)
-
+            .frame(width: geometry.size.width*0.85, height: 60)
+            .frame(width: geometry.size.width, alignment: .center)
         }
-        .buttonStyle(.plain)
+        .frame(height: 60)
+        
     }
+}
+
+#Preview {
+    MainMenuPage()
 }

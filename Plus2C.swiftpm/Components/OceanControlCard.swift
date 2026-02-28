@@ -52,7 +52,6 @@ struct OceanControlCard: View {
             }
         )
         .shadow(color: getFloodColor(floodValue: floodValue).opacity(0.5), radius: 25, x: 0, y: 5)
-        .frame(width: 700)
     }
 
 }
