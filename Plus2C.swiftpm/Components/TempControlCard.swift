@@ -5,7 +5,11 @@ struct TempControlCard: View {
     @State private var isEditing = false
     
     let steps: [Double] = [0.0, 0.5, 1.0, 1.3, 1.5, 2.0, 2.5, 3.0]
-    @State private var stepIndex: Int = 0
+    
+    // get the slider step index for the tempIncrease
+    private var currentStepIndex: Int {
+        steps.enumerated().min(by: { abs($0.element - tempIncrease) < abs($1.element - tempIncrease) })?.offset ?? 0
+    }
     
     var body: some View {
         VStack{
@@ -39,10 +43,10 @@ struct TempControlCard: View {
                
                 Slider(
                     value: Binding(
-                        get: { Double(stepIndex) },
+                        get: { Double(currentStepIndex) },
                         set: { newVal in
-                            stepIndex = Int(newVal.rounded())
-                            tempIncrease = steps[stepIndex]  // keeps the binding in sync
+                            let index = Int(newVal.rounded())
+                            tempIncrease = steps[index]  // keeps the binding in sync
                         }
                     ),
                     in: 0...Double(steps.count - 1),
