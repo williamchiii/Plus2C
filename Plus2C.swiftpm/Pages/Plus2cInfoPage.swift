@@ -36,7 +36,7 @@ struct Plus2cInfoPage: View{
                         .padding(.horizontal,30)
                         .padding(.top, 25)
                         .padding(.bottom, 10)
-                        Text("+2°C of global warming matters because it causes major changes to the planet, even though the number sounds small. It is a global average, which means many places warm much more than 2 degrees. At this level, heatwaves become stronger and more frequent, sea levels rise faster from melting ice, and ecosystems like coral reefs are severely damaged. Food and water supplies also become less stable. Overall, +2°C increases the risk of long-term and possibly irreversible climate damage that affects millions of people around the world.")
+                        Text("+2°C of global warming is crucial because it causes major changes to the planet. Even though just +2°C may not sound like much, it is a global average. This means many places warm much more than just 2°C degrees. At this level, heatwaves become stronger and more frequent, sea levels rise faster from melting ice, and ecosystems like coral reefs are severely damaged. Food and water supplies also become less stable. After +2°C, every fraction of a degree can cause major catastrophic damage to our planet and displacing millions of people.")
                             .foregroundStyle(.black)
                             .font(.title3)
                             .frame(maxWidth: .infinity, alignment: .leading)
