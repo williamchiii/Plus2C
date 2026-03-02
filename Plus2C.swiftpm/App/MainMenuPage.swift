@@ -38,8 +38,7 @@ struct MainMenuPage: View {
                                 Spacer()
                                     .frame(height: geometry.size.height * 0.35)
                                 TempControlCard(tempIncrease: $tempIncrease)
-                                    .frame(width: geometry.size.width * 0.85)
-                                    .padding(.horizontal, 40)
+                                    .padding(.horizontal, 30)
                                     .padding(.vertical, 15)
                                     
                                 ExploreCard(
@@ -49,7 +48,7 @@ struct MainMenuPage: View {
                                 ){
                                     SeaLevelPage(tempIncrease: $tempIncrease, floodValue: floodValue)
                                 }
-                                .frame(width: geometry.size.width * 0.85)
+                                .padding(.horizontal, 30)
                                 
                                 ExploreCard(
                                     systemImage: "aqi.high",
@@ -58,7 +57,7 @@ struct MainMenuPage: View {
                                 ){
                                     RiskSnapshotPage()
                                 }
-                                .frame(width: geometry.size.width * 0.85)
+                                .padding(.horizontal, 30)
                                 
                                 ExploreCard(
                                     systemImage: "checklist",
@@ -67,7 +66,7 @@ struct MainMenuPage: View {
                                 ){
                                     ActionChecklistPage()
                                 }
-                                .frame(width: geometry.size.width * 0.85)
+                                .padding(.horizontal, 30)
                                 
                                 /*implement in future
                                 ExploreCard(
@@ -85,7 +84,7 @@ struct MainMenuPage: View {
                                 ){
                                     Plus2cInfoPage()
                                 }
-                                .frame(width: geometry.size.width * 0.85)
+                                .padding(.horizontal, 30)
                                 
                                 .padding(.bottom, geometry.size.height/CGFloat(cardBottomPaddingRatio))
                             }
