@@ -43,7 +43,7 @@ struct ExploreCard<Destination: View>: View {
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 10)
-            .frame(height: 60)
+            .frame(minHeight: 60)
             .contentShape(Rectangle())
         }
         .buttonStyle(ScaleOnlyButtonStyle())
